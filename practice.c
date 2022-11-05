@@ -16,15 +16,19 @@ int pop(){
     if(top >= 0){
         int val = stack[top];
         top-=1;
-        printf("");
+        printf("Pop of stack %d\n",val);
+    }else{
+        printf("Exception from pop! Empty stack\n");  
     }
+    
     return -1;
 }
 int peak(){
     if(top>=0){
         return stack[top];
+    }else{
+        printf("Exception from peak! Empty stack\n");
     }
-    printf("Exception from peak! Empty stack\n");
     return -1;
 }
 int main(){
@@ -32,8 +36,8 @@ int main(){
     peak();
     push(10);
     push(20);
-    printf("Top of stack %d\n",peak());
     push(30);
+    pop();
     push(40);
     printf("Top of stack %d\n",peak());
 
