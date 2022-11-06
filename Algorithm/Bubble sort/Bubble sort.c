@@ -1,7 +1,7 @@
 #include<stdio.h>
-int arr[]={5,2,9,1,6};
-int i,j,size=5;
 int main(){
+    int arr[]={5,2,9,1,6};
+    int i,j,size=5;
     printf("\nBefore sorting: ");
     for(i=0;i<size;i++){
         printf("%d ",arr[i]);
