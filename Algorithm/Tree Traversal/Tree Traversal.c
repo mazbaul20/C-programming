@@ -7,7 +7,6 @@ struct node {
   struct node* left;
   struct node* right;
 };
-
 // Inorder traversal
 void inOrder(struct node* root) {
   if (root == NULL) return;
