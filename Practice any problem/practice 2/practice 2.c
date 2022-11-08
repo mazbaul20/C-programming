@@ -1,25 +1,44 @@
 #include<stdio.h>
-int main(){
-    int arr[100]={8,2,1,22,55};
-    int i,j,size=5;
-    printf("Before sorting: ");
-    for(i=0;i<size;i++){
-        printf("%d ",arr[i]);
-    }
-    //start sorting program
-    for(i=0;i<size-1;i++){
-        for(j=0;j<size-1;j++){
-            if(arr[i]>arr[i+1]){
-                int temp=arr[i];
-                arr[i]=arr[i+1];
-                arr[i+1]=temp;
-            }
-        }
-    }
-    printf("\nAfter sorting: ");
-    for(i=0;i<size;i++){
-        printf("%d ",arr[i]);
+#define CAPACITY 3
+int stack[CAPACITY];
+int top=-1;
+void push(int x){
+    if(top<CAPACITY-1){
+        top+=1;
+        stack[top]=x;
+        printf("Successful added item: %d\n",x);
+    }else{
+        printf("Exception! no spaces\n");
     }
 
+
+}
+int pop(){
+    if(top>0){
+        int val=stack[top];
+        top-=1;
+        return val;
+    }else{
+        printf("Exception from peak! Empty stack\n");
+    }
+    return -1;
+}
+int peak(){
+    if(top>0){
+        return stack[top];
+    }else{
+        printf("Exception from peak! Empty stack\n");
+    }
+    return -1;
+}
+int main(){
+    printf("Implementation stack in c\n");
+    peak();
+    push(10);
+    push(20);
+    push(30);
+    printf("Pop of stack: %d\n",pop());
+    push(40);
+    printf("Top of stack: %d\n",peak());
     return 0;
 }
