@@ -2,7 +2,7 @@
 #include<stdbool.h>
 #define CAPACITY 5
 
-int queue[CAPACITY];
+int Queue[CAPACITY];
 int front = 0, rear = -1, totalItem = 0;
 
 bool isFull(){
@@ -23,7 +23,7 @@ void enqueue(int item){
         return;
     }
     rear = (rear + 1) % CAPACITY;
-    queue[rear] = item;
+    Queue[rear] = item;
     totalItem++;
 }
 
@@ -32,8 +32,8 @@ int dequeue(){
         printf("Sorry, the Queue is empty.\n");
         return -1;
     }
-    int frontItem = queue[front];
-    queue[front] = -1;
+    int frontItem = Queue[front];
+    Queue[front] = -1;
     front = (front + 1) % CAPACITY;
     totalItem--;
     return frontItem;
@@ -43,13 +43,13 @@ void printQueue(){
     int i;
     printf("Queue: ");
     for (i = 0; i < CAPACITY; i++){
-        printf("%d ", queue[i]);
+        printf("%d ", Queue[i]);
     }
     printf("\n");
 }
 
 int main(){
-    printf("Implementation queue in c\n");
+    printf("\n***********\nLet's implement our Queue.\n\n");
     enqueue(10);
     enqueue(20);
     enqueue(30);

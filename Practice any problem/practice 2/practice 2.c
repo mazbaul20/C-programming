@@ -1,44 +1,47 @@
+#include<stdlib.h>
 #include<stdio.h>
-#define CAPACITY 3
-int stack[CAPACITY];
-int top=-1;
-void push(int x){
-    if(top<CAPACITY-1){
-        top+=1;
-        stack[top]=x;
-        printf("Successful added item: %d\n",x);
-    }else{
-        printf("Exception! no spaces\n");
-    }
+// Merge Function
+void merge(int arr[], int l, int m, int r)
+{
+int i, j, k;
+int n1 = m - l + 1;
+int n2 = r - m;
+int L[n1], R[n2];
+for (i = 0; i < n1; i++)
+L[i] = arr[l + i];
+for (j = 0; j < n2; j++)
+R[j] = arr[m + 1+ j];
+i = 0;
+j = 0;
+k = l;
+while (i < n1 && j < n2)
+{
+if (L[i] <= R[j])
+{
+arr[k] = L[i];
+i++;
+}
+else
+{
+arr[k] = R[j];
+j++;
+}
+k++;
+}
+while (i < n1)
+{
+arr[k] = L[i];
+i++;
+k++;
+}
+while (j < n2)
+{
+arr[k] = R[j];
+j++;
+k++;
+}
+}
 
-
-}
-int pop(){
-    if(top>0){
-        int val=stack[top];
-        top-=1;
-        return val;
-    }else{
-        printf("Exception from peak! Empty stack\n");
-    }
-    return -1;
-}
-int peak(){
-    if(top>0){
-        return stack[top];
-    }else{
-        printf("Exception from peak! Empty stack\n");
-    }
-    return -1;
-}
 int main(){
-    printf("Implementation stack in c\n");
-    peak();
-    push(10);
-    push(20);
-    push(30);
-    printf("Pop of stack: %d\n",pop());
-    push(40);
-    printf("Top of stack: %d\n",peak());
-    return 0;
+    merge();
 }

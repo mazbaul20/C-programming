@@ -59,16 +59,16 @@ int main() {
   insertRight(root, 9);
 
   insertLeft(root->left, 5);
-  insertRight(root->left, 6);
+  insertRight(root->right, 6);
 
   printf("InOrder traversal \n");
-  inOrder(root);
+  inOrder(root);//5 12 1 9 6
 
   printf("\nPreOrder traversal \n");
-  preOrder(root);
+  preOrder(root);//1 12 5 9 6
 
   printf("\nPostOrder traversal \n");
-  postOrder(root);
+  postOrder(root);//5 12 6 9 1
 
   printf("\n");
   return 0;
