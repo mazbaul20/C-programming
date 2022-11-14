@@ -1,75 +1,54 @@
-#include <stdio.h>
-#include <stdlib.h>
-//tree traversar
+#include<stdio.h>
 //1 12 9 5 6
-struct node {
-  int item;
-  struct node* left;
-  struct node* right;
-};
-// Inorder traversal
-void inOrder(struct node* root) {
-  if (root == NULL) return;
-  inOrder(root->left);
-  printf("%d ", root->item);
-  inOrder(root->right);
-}
+void merge_sort(int a[],int length);
+void merge_sort_recursion(int a[],int l,int r);
+void merge_sorted_arrays(int a[],int l,int m,int r);
 
-// preOrder traversal
-void preOrder(struct node* root) {
-  if (root == NULL) return;
-  printf("%d ", root->item);
-  preOrder(root->left);
-  preOrder(root->right);
-}
-
-// postOrder traversal
-void postOrder(struct node* root) {
-  if (root == NULL) return;
-  postOrder(root->left);
-  postOrder(root->right);
-  printf("%d ", root->item);
-}
-
-// Create a new Node
-struct node* createNode(value) {
-  struct node* newNode = malloc(sizeof(struct node));
-  newNode->item = value;
-  newNode->left = NULL;
-  newNode->right = NULL;
-
-  return newNode;
-}
-
-// Insert on the left of the node
-struct node* insertLeft(struct node* root, int value) {
-  root->left = createNode(value);
-  return root->left;
-}
-
-// Insert on the right of the node
-struct node* insertRight(struct node* root, int value) {
-  root->right = createNode(value);
-  return root->right;
-}
-
-int main() {
-  struct node* root = createNode(1);
-  insertLeft(root, 12);
-  insertRight(root, 9);
-
-  insertLeft(root->left, 5);
-  insertRight(root->right, 6);
-
-  printf("InOrder traversal \n");
-  inOrder(root);//5 12 1 9 6
-
-  printf("\nPreOrder traversal \n");
-  preOrder(root);//1 12 5 9 6
-
-  printf("\nPostOrder traversal \n");
-  postOrder(root);//5 12 6 9 1
-
+int main(){
+  int array[] = {1, 12, 9, 5, 6};
+  int length = 5;
+  merge_sort(array,length);
+  printf("After sorting: ");
+  int i;
+  for(i=0;i<length;i++){
+      printf("%d ",array[i]);
+  }
   printf("\n");
   return 0;
+}
+void merge_sort(int a[],int length){
+  merge_sort_recursion(a,0,length-1);
+}
+void merge_sort_recursion(int a[],int l,int r){
+  if(l<r){
+    int m = l+(r-l)/2;
+    merge_sort_recursion(a,l,m);
+    merge_sort_recursion(a,m+1,r);
+
+    merge_sorted_arrays(a,l,m,r);
+  }
+}
+void merge_sorted_arrays(int a[],int l,int m,int r){
+  int left_length = m-l+1;
+  int right_length = r-m;
+
+  int temp_left[left_length];
+  int temp_right[right_length];
+
+  int i,j,k;
+  for(i=0;i<left_length;i++){
+      temp_left[i] = a[l+i];
+  }
+  for(i=0;i<right_length;i++){
+      temp_right[i] = a[m+1+i];
+  }
+  for(i=0,j=0,k=l;k<=r;k++){
+      if((i<left_length) && (j>=right_length || temp_left[i]<=temp_right[j])){
+          a[k] = temp_left[i];
+          i++;
+      }else{
+          a[k] = temp_right[j];
+          j++;
+      }
+  }
 }
