@@ -8,7 +8,8 @@ int main(){
 
   merge_sort(array, length);
   printf("After sorting: ");
-  for (int i = 0; i < length; i++){
+  int i;
+  for (i = 0; i < length; i++){
     printf("%d ", array[i]);
   }
     printf("\n");
@@ -36,7 +37,7 @@ void merge_sorted_arrays(int a[], int l, int m, int r){
 
   int i, j, k;
 
-  for (int i = 0; i < left_length; i++){
+  for (i = 0; i < left_length; i++){
     temp_left[i] = a[l + i];
   }
   for (i = 0; i < right_length; i++){
